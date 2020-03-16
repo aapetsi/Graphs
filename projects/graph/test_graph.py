@@ -15,7 +15,7 @@ class Test(unittest.TestCase):
         self.graph.add_vertex(5)
         self.graph.add_vertex(6)
         self.graph.add_vertex(7)
-        
+
         self.graph.add_edge(5, 3)
         self.graph.add_edge(6, 3)
         self.graph.add_edge(7, 1)
@@ -29,74 +29,74 @@ class Test(unittest.TestCase):
 
     def test_vertices(self):
         vertices = {
-          1: {2},
-          2: {3, 4},
-          3: {5},
-          4: {6, 7}, 
-          5: {3},
-          6: {3},
-          7: {1, 6}
+            1: {2},
+            2: {3, 4},
+            3: {5},
+            4: {6, 7},
+            5: {3},
+            6: {3},
+            7: {1, 6}
         }
         self.assertDictEqual(self.graph.vertices, vertices)
 
-    # def test_bft(self):
-    #     bft = [
-    #         "1\n2\n3\n4\n5\n6\n7\n",
-    #         "1\n2\n3\n4\n5\n7\n6\n",
-    #         "1\n2\n3\n4\n6\n7\n5\n",
-    #         "1\n2\n3\n4\n6\n5\n7\n",
-    #         "1\n2\n3\n4\n7\n6\n5\n",
-    #         "1\n2\n3\n4\n7\n5\n6\n",
-    #         "1\n2\n4\n3\n5\n6\n7\n",
-    #         "1\n2\n4\n3\n5\n7\n6\n",
-    #         "1\n2\n4\n3\n6\n7\n5\n",
-    #         "1\n2\n4\n3\n6\n5\n7\n",
-    #         "1\n2\n4\n3\n7\n6\n5\n",
-    #         "1\n2\n4\n3\n7\n5\n6\n"
-    #     ]
+    def test_bft(self):
+        bft = [
+            "1\n2\n3\n4\n5\n6\n7\n",
+            "1\n2\n3\n4\n5\n7\n6\n",
+            "1\n2\n3\n4\n6\n7\n5\n",
+            "1\n2\n3\n4\n6\n5\n7\n",
+            "1\n2\n3\n4\n7\n6\n5\n",
+            "1\n2\n3\n4\n7\n5\n6\n",
+            "1\n2\n4\n3\n5\n6\n7\n",
+            "1\n2\n4\n3\n5\n7\n6\n",
+            "1\n2\n4\n3\n6\n7\n5\n",
+            "1\n2\n4\n3\n6\n5\n7\n",
+            "1\n2\n4\n3\n7\n6\n5\n",
+            "1\n2\n4\n3\n7\n5\n6\n"
+        ]
 
-    #     stdout_ = sys.stdout
-    #     sys.stdout = io.StringIO()
-    #     self.graph.bft(1)
-    #     output = sys.stdout.getvalue()
+        stdout_ = sys.stdout
+        sys.stdout = io.StringIO()
+        self.graph.bft(1)
+        output = sys.stdout.getvalue()
 
-    #     self.assertIn(output, bft)
+        self.assertIn(output, bft)
 
-    #     sys.stdout = stdout_  # Restore stdout
+        sys.stdout = stdout_  # Restore stdout
 
-    # def test_dft(self):
-    #     dft = [
-    #         "1\n2\n3\n5\n4\n6\n7\n",
-    #         "1\n2\n3\n5\n4\n7\n6\n",
-    #         "1\n2\n4\n7\n6\n3\n5\n",
-    #         "1\n2\n4\n6\n3\n5\n7\n"
-    #     ]
+    def test_dft(self):
+        dft = [
+            "1\n2\n3\n5\n4\n6\n7\n",
+            "1\n2\n3\n5\n4\n7\n6\n",
+            "1\n2\n4\n7\n6\n3\n5\n",
+            "1\n2\n4\n6\n3\n5\n7\n"
+        ]
 
-    #     stdout_ = sys.stdout
-    #     sys.stdout = io.StringIO()
-    #     self.graph.dft(1)
-    #     output = sys.stdout.getvalue()
+        stdout_ = sys.stdout
+        sys.stdout = io.StringIO()
+        self.graph.dft(1)
+        output = sys.stdout.getvalue()
 
-    #     self.assertIn(output, dft)
+        self.assertIn(output, dft)
 
-    #     sys.stdout = stdout_  # Restore stdout
+        sys.stdout = stdout_  # Restore stdout
 
-    # def test_dft_recursive(self):
-    #     dft = [
-    #         "1\n2\n3\n5\n4\n6\n7\n",
-    #         "1\n2\n3\n5\n4\n7\n6\n",
-    #         "1\n2\n4\n7\n6\n3\n5\n",
-    #         "1\n2\n4\n6\n3\n5\n7\n"
-    #     ]
+    def test_dft_recursive(self):
+        dft = [
+            "1\n2\n3\n5\n4\n6\n7\n",
+            "1\n2\n3\n5\n4\n7\n6\n",
+            "1\n2\n4\n7\n6\n3\n5\n",
+            "1\n2\n4\n6\n3\n5\n7\n"
+        ]
 
-    #     stdout_ = sys.stdout
-    #     sys.stdout = io.StringIO()
-    #     self.graph.dft_recursive(1)
-    #     output = sys.stdout.getvalue()
+        stdout_ = sys.stdout
+        sys.stdout = io.StringIO()
+        self.graph.dft_recursive(1)
+        output = sys.stdout.getvalue()
 
-    #     self.assertIn(output, dft)
+        self.assertIn(output, dft)
 
-    #     sys.stdout = stdout_  # Restore stdout
+        sys.stdout = stdout_  # Restore stdout
 
     # def test_bfs(self):
     #     bfs = [1, 2, 4, 6]
@@ -115,6 +115,7 @@ class Test(unittest.TestCase):
     #         [1, 2, 4, 7, 6]
     #     ]
     #     self.assertIn(self.graph.dfs_recursive(1,6), dfs)
+
 
 if __name__ == '__main__':
     unittest.main()
