@@ -4,6 +4,7 @@ Simple graph implementation
 from util import Stack, Queue  # These may come in handy
 from collections import deque
 
+
 class Graph:
 
     """Represent a graph as a dictionary of vertices
@@ -72,7 +73,7 @@ class Graph:
 
         for vertex in result:
             print(vertex)
-        
+
         return result
 
     def _dfs_helper(self, v, path=[]):
@@ -90,7 +91,7 @@ class Graph:
         This should be done using recursion.
         """
         visited = [False] * (len(self.vertices))
-        result = self._dfs_helper(starting_vertex)     
+        result = self._dfs_helper(starting_vertex)
         for v in result:
             print(v)
 
@@ -103,10 +104,10 @@ class Graph:
         queue = Queue()
         queue.enqueue([starting_vertex])
         visitied = set()
-       
+
         if starting_vertex == destination_vertex:
             return [starting_vertex, destination_vertex]
-        
+
         while queue.size() > 0:
             visitied = set()
             path = queue.dequeue()
@@ -114,7 +115,7 @@ class Graph:
             if vertex not in visitied:
                 if vertex == destination_vertex:
                     return path
-                
+
                 neighbors = self.get_neighbors(vertex)
                 for neighbor in neighbors:
                     np = list(path)
@@ -123,9 +124,8 @@ class Graph:
 
                     if neighbor == destination_vertex:
                         return np
-                
-                visitied.add(vertex)
 
+                visitied.add(vertex)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -139,14 +139,14 @@ class Graph:
 
         if starting_vertex == destination_vertex:
             return [starting_vertex, destination_vertex]
-        
+
         while stack.size():
             path = stack.pop()
             vertex = path[-1]
             if vertex not in visited:
                 if vertex == destination_vertex:
                     return path
-                
+
                 neighbors = self.get_neighbors(vertex)
                 for neighbor in neighbors:
                     np = list(path)
@@ -155,7 +155,7 @@ class Graph:
 
                     if neighbor == destination_vertex:
                         return np
-                
+
                 visited.add(vertex)
 
     def dfs_recursive(self, starting_vertex, destination_vertex, path=None):
@@ -170,10 +170,11 @@ class Graph:
             path = [starting_vertex]
         if starting_vertex == destination_vertex:
             return path
-        
+
         neighbors = self.get_neighbors(starting_vertex)
         for neighbor in neighbors - set(path):
-            findPath = self.dfs_recursive(neighbor, destination_vertex, path + [neighbor])
+            findPath = self.dfs_recursive(
+                neighbor, destination_vertex, path + [neighbor])
             if findPath is not None:
                 return findPath
 
@@ -243,5 +244,5 @@ if __name__ == '__main__':
         [1, 2, 4, 6]
         [1, 2, 4, 7, 6]
     '''
-    # print(graph.dfs(1, 6))
-    # print(graph.dfs_recursive(1, 6))
+    print(graph.dfs(1, 6))
+    print(graph.dfs_recursive(1, 6))
