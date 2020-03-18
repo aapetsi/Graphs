@@ -1,25 +1,15 @@
 from util import Queue, Stack
 from graph import Graph
 
-def earliest_ancestor(ancestors, starting_node):
-    # 1. Build the graph
-    # instantiate a new graph object
-    graph = Graph()
-    # loop over all pairs in ancestors
-    for pair in ancestors:
-        # add pair[0] and pair[1] to the graph
-        graph.add_vertex(pair[0])
-        graph.add_vertex(pair[1])
-        # build the edges in reverse
-        graph.add_edge(pair[1], pair[0])
-    # Do a BFS (with paths)
-    # create a queue
+
+def bfs(graph, starting_node):
+        # create a queue
     q = Queue()
     # enqueue starting node inside a list
     q.enqueue([starting_node])
     # set a max path length to 1
     max_path_length = 1
-    # set initial earlyest ancestor
+    # set initial earliest ancestor
     earliest_ancestor = -1
     # while queue has contents
     while q.size() > 0:
@@ -27,8 +17,10 @@ def earliest_ancestor(ancestors, starting_node):
         path = q.dequeue()
         # get the last vert
         vert = path[-1]
-        # if path is longer or equal and the value is smaller, or if the path is longer
-        if (len(path) >= max_path_length and vert < earliest_ancestor) or (len(path) > max_path_length):
+        # if path is longer or equal and the value is smaller, or if the path
+        # is longer
+        if (len(path) >= max_path_length and vert <
+                earliest_ancestor) or (len(path) > max_path_length):
             # set the earliest ancestor to the vert
             earliest_ancestor = vert
             # set the max path length to the len of the path
@@ -43,3 +35,18 @@ def earliest_ancestor(ancestors, starting_node):
             q.enqueue(path_copy)
     # return earliest ancestor
     return earliest_ancestor
+
+
+def earliest_ancestor(ancestors, starting_node):
+    # 1. Build the graph
+    # instantiate a new graph object
+    graph = Graph()
+    # loop over all pairs in ancestors
+    for pair in ancestors:
+        # add pair[0] and pair[1] to the graph
+        graph.add_vertex(pair[0])
+        graph.add_vertex(pair[1])
+        # build the edges in reverse
+        graph.add_edge(pair[1], pair[0])
+    # Do a BFS (with paths)
+    return bfs(graph, starting_node)
